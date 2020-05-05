@@ -1,8 +1,6 @@
 ﻿<h1>Simulação Acadêmica</h1>
 
-@*<i class="fas fa-shopping-basket"></i>*@
-
-<form>
+<form id="form-simulation">
     <div class="form-row">
         <div class="col form-group">
             <label>Número de turmas</label>
@@ -13,64 +11,60 @@
             <input type="number" class="form-control" placeholder="Quantidade de Alunos" required>
         </div>
     </div>
-    <div class="form-row">
-        <div class="col form-group">
-            <label>Quantidade de matérias</label>
-            <select id="input-materias" class="form-control">
-                <option selected value="0">selecione...</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group">
-            <label>teste</label>
+    <div class="form-row" id="first">
+        <div class="form-group col">
+            <label>Matéria</label>
             <input type="text" class="form-control" />
+        </div>
+
+        <div class="form-group col">
+            <label style="width: 100%;">Aumentar/Diminuir quantidade de matérias</label>
+            <span class="btn btn-primary" onclick="insertInputs()"><i class="fas fa-plus" id="plus"></i></span>
+            <span class="btn btn-danger" onclick="removeElement()"><i class="fas fa-minus-square" id="minus"></i></span>
         </div>
     </div>
 </form>
 <script>
 
-    function insertInputs(element) {
-
+    function insertInputs() {
+        let formSimulation = document.getElementById('form-simulation');
+        formSimulation.appendChild(createInput());
     }
 
     function createInput() {
-        if (number == 0) {
-            console.log('Um número deve ser selecionado.');
-        }
-        else {
-            let parentDiv = document.createElement('div');
-            parentDiv.classList.add('form-row');
-            parentDiv.classList.add('form-materia');
 
-            let childDiv = document.createElement('div');
-            childDiv.classList.add('form-group');
+        let parentDiv = document.createElement('div');
+        parentDiv.classList.add('form-row');
+        parentDiv.classList.add('form-materia');
 
-            let label = document.createElement('label');
-            label.innerText = 'Matéria';
+        let childDiv = document.createElement('div');
+        childDiv.classList.add('form-group');
 
-            let inputMatter = document.createElement('input');
-            inputMatter.classList.add('form-control');
+        let label = document.createElement('label');
+        label.innerText = 'Matéria';
 
-            let attributeType = document.createAttribute('type');
-            attributeType.value = 'text';
-            inputMatter.attributes.setNamedItem(attributeType);
+        let inputMatter = document.createElement('input');
+        inputMatter.classList.add('form-control');
+        inputMatter.style.width = '280px';
+        inputMatter.style.marginLeft = '5px';
 
-        }
+        let attributeType = document.createAttribute('type');
+        attributeType.value = 'text';
+        inputMatter.attributes.setNamedItem(attributeType);
+
+        childDiv.appendChild(label);
+        childDiv.appendChild(inputMatter);
+        parentDiv.appendChild(childDiv);
+
+        return parentDiv;
     }
 
-    function removeElements() {
-        
+    function removeElement() {
+        let remove = document.getElementsByClassName('form-materia');
+        for (let i = 0; i < remove.length; i++) {
+            remove[i].parentNode.removeChild(remove[i]);
+            break;
+        }
     }
 
 </script>
