@@ -8,6 +8,8 @@ namespace FirstClass
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            #region scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -22,12 +24,27 @@ namespace FirstClass
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
+                      "~/Scripts/angular.js"));
+
+            #endregion
+
+
+            #region styles
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/fontawesome/css").Include(
+                      "~/Content/fontawesome/css/fontawesome.css",
+                      "~/Content/fontawesome/css/regular.css",
+                      "~/Content/fontawesome/css/brands.css",
+                      "~/Content/fontawesome/css/solid.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
-                      "~/Scripts/angular.js"));
+            #endregion
+
+
+
+
         }
     }
 }
