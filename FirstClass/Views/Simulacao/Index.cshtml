@@ -1,1 +1,73 @@
-﻿<p>Teste</p>
+﻿<h1>Simulação Acadêmica</h1>
+<form>
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Número de turmas</label>
+            <input type="number" class="form-control" placeholder="Quantidade de turmas" required>
+        </div>
+        <div class="col">
+            <label>Número de alunos por turma</label>
+            <input type="number" class="form-control" placeholder="Quantidade de Alunos" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Quantidade de matérias</label>
+            <select id="input-materias" class="form-control">
+                <option selected value="0">selecione...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label>teste</label>
+            <input type="text" class="form-control" />
+        </div>
+    </div>
+</form>
+<script>
+
+    function insertInputs(element) {
+
+    }
+
+    function createInput() {
+        if (number == 0) {
+            console.log('Um número deve ser selecionado.');
+        }
+        else {
+            let parentDiv = document.createElement('div');
+            parentDiv.classList.add('form-row');
+            parentDiv.classList.add('form-materia');
+
+            let childDiv = document.createElement('div');
+            childDiv.classList.add('form-group');
+
+            let label = document.createElement('label');
+            label.innerText = 'Matéria';
+
+            let inputMatter = document.createElement('input');
+            inputMatter.classList.add('form-control');
+
+            let attributeType = document.createAttribute('type');
+            attributeType.value = 'text';
+            inputMatter.attributes.setNamedItem(attributeType);
+
+        }
+    }
+
+    function removeElements() {
+        
+    }
+
+</script>
