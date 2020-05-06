@@ -32,7 +32,11 @@ namespace FirstClass.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var numberOfClasses = collection.Get("numberOfClasses");
+                var numberOfStudents = collection.Get("numberOfStudents");
+                var matters = collection.Get("matter");
+
+
 
                 return RedirectToAction("Index");
             }

@@ -1,21 +1,34 @@
 ﻿<h1>Simulação Acadêmica</h1>
 
-<form id="form-simulation">
+
+<form id="form-simulation" method="post" action="~/Simulacao/Create">
     <div class="form-row">
         <div class="col form-group">
             <label>Número de turmas</label>
-            <input type="number" class="form-control" placeholder="Quantidade de turmas" required>
+            <input type="number" class="form-control" placeholder="Quantidade de turmas" required for="numberOfClasses" name="numberOfClasses">
         </div>
         <div class="col">
             <label>Número de alunos por turma</label>
-            <input type="number" class="form-control" placeholder="Quantidade de Alunos" required>
+            <input type="number" class="form-control" placeholder="Quantidade de Alunos" required for="numberOfStudents" name="numberOfStudents">
+        </div>
+        <div class="col">
+            <label>Enviar dados</label>
+            <input type="submit" class="form-control btn btn-info">
         </div>
     </div>
     <div class="form-row" id="first">
         <div class="form-group col">
             <label>Matéria</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" required for="matter" name="matter" />
+            
         </div>
+
+        <div class="form-group col">
+            <label>Peso</label>
+            <input type="number" class="form-control" required for="peso" name="peso" />
+        </div>
+
+
 
         <div class="form-group col">
             <label style="width: 100%;">Aumentar/Diminuir quantidade de matérias</label>
@@ -24,6 +37,8 @@
         </div>
     </div>
 </form>
+
+
 <script>
 
     function insertInputs() {
@@ -33,30 +48,82 @@
 
     function createInput() {
 
-        let parentDiv = document.createElement('div');
-        parentDiv.classList.add('form-row');
-        parentDiv.classList.add('form-materia');
+        let parentDiv = createElement('div', ['form-row', 'form-materia']);  
 
-        let childDiv = document.createElement('div');
-        childDiv.classList.add('form-group');
+        let childDiv = createElement('div', ['form-group', 'col']);
 
-        let label = document.createElement('label');
-        label.innerText = 'Matéria';
+        let label = createElement('label', null, 'Matéria');
 
-        let inputMatter = document.createElement('input');
-        inputMatter.classList.add('form-control');
+        let inputMatter = createElement('input', ['form-control', 'col'])
         inputMatter.style.width = '280px';
         inputMatter.style.marginLeft = '5px';
 
-        let attributeType = document.createAttribute('type');
-        attributeType.value = 'text';
+        let attributeType = createAttribute('type', 'text');
+            
         inputMatter.attributes.setNamedItem(attributeType);
+
+        let attributeRequired = createAttribute('required', null);
+            
+        inputMatter.attributes.setNamedItem(attributeRequired);
+
+        let attributeFor = createAttribute('for', 'matter');
+            
+        inputMatter.attributes.setNamedItem(attributeFor);
+
+        let attributeName = createAttribute('name', 'matter');
+          
+        inputMatter.attributes.setNamedItem(attributeName);
+
+        let childDivPeso = createElement('div', ['form-group', 'col-8']);
+
+        let labelPeso = createElement('label', null, 'Peso');
+
+        let inputPeso = createElement('input', ['form-control', 'col-8'])
+
+        let attributePeso = createAttribute('type', 'number');
+        inputPeso.attributes.setNamedItem(attributePeso);
+
+        let requiredPeso = createAttribute('required', null);
+
+        inputPeso.attributes.setNamedItem(requiredPeso);
+
 
         childDiv.appendChild(label);
         childDiv.appendChild(inputMatter);
+        
         parentDiv.appendChild(childDiv);
 
+        childDivPeso.appendChild(labelPeso);
+        childDivPeso.appendChild(inputPeso);
+
+        parentDiv.appendChild(childDivPeso);
+
         return parentDiv;
+    }
+
+    function createElement(name, classList, text = null) {
+        let element = document.createElement(name);
+
+        if (classList != null) {
+            for (let i = 0; i < classList.length; i++) {
+                element.classList.add(classList[i]);
+            } 
+        }
+
+        if (text != null) {
+            element.innerText = text;
+        }
+
+        return element;
+    }
+
+    function createAttribute(name, value) {
+        let attribute = document.createAttribute(name);
+
+        if(value != null)
+            attribute.value = value;
+
+        return attribute;
     }
 
     function removeElement() {
