@@ -2,15 +2,14 @@
 
 
 <form id="form-simulation" ng-controller="formSimulationController" ng-init="init()">
-    <p>{{ mensagem }}</p>
     <div class="form-row">
         <div class="col form-group">
-            <label>Número de turmas</label>
-            <input ng-model="modelSimulacao.numeroTurmas" type="number" class="form-control" placeholder="Quantidade de turmas" required for="numberOfClasses" name="numberOfClasses">
+            <label>Nº de turmas</label>
+            <input ng-model="modelSimulacao.numeroTurmas" type="number" class="form-control" required for="numberOfClasses" name="numberOfClasses">
         </div>
         <div class="col">
-            <label>Número de alunos por turma</label>
-            <input ng-model="modelSimulacao.numeroAlunos" type="number" class="form-control" placeholder="Quantidade de Alunos" required for="numberOfStudents" name="numberOfStudents">
+            <label>Nº de alunos</label>
+            <input ng-model="modelSimulacao.numeroAlunos" type="number" class="form-control" required for="numberOfStudents" name="numberOfStudents">
         </div>
         <div class="col">
             <label>Enviar dados</label>
@@ -20,132 +19,51 @@
     <div class="form-row" id="first">
         <div class="form-group col">
             <label>Matéria</label>
-            <input ng-model="modelSimulacao.materia" type="text" class="form-control" required for="matter" name="matter" />
-            
+            <input ng-model="materia.nome" type="text" class="form-control materias" required for="matter" name="matter" />
+
         </div>
 
         <div class="form-group col">
             <label>Peso</label>
-            <input ng-model="modelSimulacao.peso" type="number" class="form-control" required for="peso" name="peso" />
+            <input ng-model="materia.peso1" type="number" class="form-control pesos" required for="peso" name="peso" />
+        </div>
+        <div class="form-group col">
+            <label>Peso</label>
+            <input ng-model="materia.peso2" type="number" class="form-control pesos" required for="peso" name="peso" />
+        </div>
+        <div class="form-group col">
+            <label>Peso</label>
+            <input ng-model="materia.peso3" type="number" class="form-control pesos" required for="peso" name="peso" />
         </div>
 
 
 
-        <div class="form-group col">
-            <label style="width: 100%;">Aumentar/Diminuir quantidade de matérias</label>
-            <span class="btn btn-primary" onclick="insertInputs()"><i class="fas fa-plus" id="plus"></i></span>
-            <span class="btn btn-danger" onclick="removeElement()"><i class="fas fa-minus-square" id="minus"></i></span>
+        <div class="form-group col" style="padding-top: 33px">
+            <span class="btn btn-primary" ng-click="addMateria(materia)"><i class="fas fa-plus" id="plus"></i></span>
+            <span class="btn btn-danger" ng-click="removeMateria()"><i class="fas fa-minus-square" id="minus"></i></span>
         </div>
     </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <h3>Matérias das turmas</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nome</th>
+                        <th>peso 1</th>
+                        <th>peso 2</th>
+                        <th>peso 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </form>
 
-
-<script>
-
-    function insertInputs() {
-        let formSimulation = document.getElementById('form-simulation');
-        formSimulation.appendChild(createInput());
-    }
-
-    function createInput() {
-
-        let parentDiv = createElement('div', ['form-row', 'form-materia']);  
-
-        let childDiv = createElement('div', ['form-group', 'col']);
-
-        let label = createElement('label', null, 'Matéria');
-
-        let inputMatter = createElement('input', ['form-control', 'col'])
-        inputMatter.style.width = '280px';
-        inputMatter.style.marginLeft = '5px';
-
-        let attributeType = createAttribute('type', 'text');
-            
-        inputMatter.attributes.setNamedItem(attributeType);
-
-        let attributeRequired = createAttribute('required', null);
-            
-        inputMatter.attributes.setNamedItem(attributeRequired);
-
-        let attributeFor = createAttribute('for', 'matter');
-            
-        inputMatter.attributes.setNamedItem(attributeFor);
-
-        let attributeName = createAttribute('name', 'matter');
-          
-        inputMatter.attributes.setNamedItem(attributeName);
-
-        let attributeModel = createAttribute('ng-model', 'modelSimulacao.materia');
-
-        inputMatter.attributes.setNamedItem(attributeModel);
-
-        let childDivPeso = createElement('div', ['form-group', 'col-8']);
-
-        let labelPeso = createElement('label', null, 'Peso');
-
-        let inputPeso = createElement('input', ['form-control', 'col-8'])
-
-        let attributePeso = createAttribute('type', 'number');
-        inputPeso.attributes.setNamedItem(attributePeso);
-
-        let attributeNamePeso = createAttribute('name', 'peso');
-        inputPeso.attributes.setNamedItem(attributeNamePeso);
-
-        let requiredPeso = createAttribute('required', null);
-
-        inputPeso.attributes.setNamedItem(requiredPeso);
-
-        let attributeModelPeso = createAttribute('ng-model', 'modelSimulacao.peso');
-
-        inputPeso.attributes.setNamedItem(attributeModelPeso);
-
-
-        childDiv.appendChild(label);
-        childDiv.appendChild(inputMatter);
-        
-        parentDiv.appendChild(childDiv);
-
-        childDivPeso.appendChild(labelPeso);
-        childDivPeso.appendChild(inputPeso);
-
-        parentDiv.appendChild(childDivPeso);
-
-        return parentDiv;
-    }
-
-    function createElement(name, classList, text = null) {
-        let element = document.createElement(name);
-
-        if (classList != null) {
-            for (let i = 0; i < classList.length; i++) {
-                element.classList.add(classList[i]);
-            } 
-        }
-
-        if (text != null) {
-            element.innerText = text;
-        }
-
-        return element;
-    }
-
-    function createAttribute(name, value) {
-        let attribute = document.createAttribute(name);
-
-        if(value != null)
-            attribute.value = value;
-
-        return attribute;
-    }
-
-    function removeElement() {
-        let remove = document.getElementsByClassName('form-materia');
-        for (let i = 0; i < remove.length; i++) {
-            remove[i].parentNode.removeChild(remove[i]);
-            break;
-        }
-    }
-
-</script>
 
 
