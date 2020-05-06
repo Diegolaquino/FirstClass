@@ -25,7 +25,10 @@ namespace FirstClass
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
-                      "~/Scripts/angular.js"));
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-messages.js",
+                      "~/Scripts/js/app.js",
+                      "~/Scripts/js/controllers/formSimulationController.js"));
 
             #endregion
 

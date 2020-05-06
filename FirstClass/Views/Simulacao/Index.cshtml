@@ -1,31 +1,32 @@
 ﻿<h1>Simulação Acadêmica</h1>
 
 
-<form id="form-simulation" method="post" action="~/Simulacao/Create">
+<form id="form-simulation" ng-controller="formSimulationController" ng-init="init()">
+    <p>{{ mensagem }}</p>
     <div class="form-row">
         <div class="col form-group">
             <label>Número de turmas</label>
-            <input type="number" class="form-control" placeholder="Quantidade de turmas" required for="numberOfClasses" name="numberOfClasses">
+            <input ng-model="modelSimulacao.numeroTurmas" type="number" class="form-control" placeholder="Quantidade de turmas" required for="numberOfClasses" name="numberOfClasses">
         </div>
         <div class="col">
             <label>Número de alunos por turma</label>
-            <input type="number" class="form-control" placeholder="Quantidade de Alunos" required for="numberOfStudents" name="numberOfStudents">
+            <input ng-model="modelSimulacao.numeroAlunos" type="number" class="form-control" placeholder="Quantidade de Alunos" required for="numberOfStudents" name="numberOfStudents">
         </div>
         <div class="col">
             <label>Enviar dados</label>
-            <input type="submit" class="form-control btn btn-info">
+            <span ng-click="enviarModelSimulacao(modelSimulacao)" class="form-control btn btn-info">Enviar</span>
         </div>
     </div>
     <div class="form-row" id="first">
         <div class="form-group col">
             <label>Matéria</label>
-            <input type="text" class="form-control" required for="matter" name="matter" />
+            <input ng-model="modelSimulacao.materia" type="text" class="form-control" required for="matter" name="matter" />
             
         </div>
 
         <div class="form-group col">
             <label>Peso</label>
-            <input type="number" class="form-control" required for="peso" name="peso" />
+            <input ng-model="modelSimulacao.peso" type="number" class="form-control" required for="peso" name="peso" />
         </div>
 
 
@@ -74,6 +75,10 @@
           
         inputMatter.attributes.setNamedItem(attributeName);
 
+        let attributeModel = createAttribute('ng-model', 'modelSimulacao.materia');
+
+        inputMatter.attributes.setNamedItem(attributeModel);
+
         let childDivPeso = createElement('div', ['form-group', 'col-8']);
 
         let labelPeso = createElement('label', null, 'Peso');
@@ -89,6 +94,10 @@
         let requiredPeso = createAttribute('required', null);
 
         inputPeso.attributes.setNamedItem(requiredPeso);
+
+        let attributeModelPeso = createAttribute('ng-model', 'modelSimulacao.peso');
+
+        inputPeso.attributes.setNamedItem(attributeModelPeso);
 
 
         childDiv.appendChild(label);

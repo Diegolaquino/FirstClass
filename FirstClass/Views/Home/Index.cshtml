@@ -8,7 +8,8 @@
     <p>@Html.ActionLink("Faça sua simulação agora", "Index", "Simulacao",null, new { @class = "btn btn-primary btn-lg text-center" })</p>
 </div>
 
-<div class="row">
+<div class="row" ng-controller="formSimulationController" ng-init="init()">
+    <p>{{ mensagem }}</p>
     <div class="col-md-4">
         <h2>Simule suas turmas de um jeito rápido</h2>
         <p>
