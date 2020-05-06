@@ -14,17 +14,10 @@ namespace FirstClass.Models
 
         public IList<Aluno> Alunos { get; set; }
 
-        public Turma(string nome)
+        public Turma(string nome, int id)
         {
             this.Nome = nome;
-        }
-
-        public static class TurmaFactory
-        {
-            public static Turma NovaTurma(string nome)
-            {
-                return new Turma(nome);
-            }
+            this.TurmaId = id;
         }
     }
 }

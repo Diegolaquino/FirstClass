@@ -16,30 +16,28 @@
             <span ng-click="enviarModelSimulacao(modelSimulacao)" class="form-control btn btn-info">Enviar</span>
         </div>
     </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Peso</label>
+            <input ng-model="modelSimulacao.peso1" type="number" class="form-control pesos" required for="peso" name="peso" />
+        </div>
+        <div class="form-group col">
+            <label>Peso</label>
+            <input ng-model="modelSimulacao.peso2" type="number" class="form-control pesos" required for="peso" name="peso" />
+        </div>
+        <div class="form-group col">
+            <label>Peso</label>
+            <input ng-model="modelSimulacao.peso3" type="number" class="form-control pesos" required for="peso" name="peso" />
+        </div>
+    </div>
     <div class="form-row" id="first">
         <div class="form-group col">
-            <label>Matéria</label>
-            <input ng-model="materia.nome" type="text" class="form-control materias" required for="matter" name="matter" />
+            <label>Inserir as matérias</label>
+            <input ng-model="modelSimulacao.materia" type="text" class="form-control materias" required for="matter" name="matter" />
 
         </div>
-
-        <div class="form-group col">
-            <label>Peso</label>
-            <input ng-model="materia.peso1" type="number" class="form-control pesos" required for="peso" name="peso" />
-        </div>
-        <div class="form-group col">
-            <label>Peso</label>
-            <input ng-model="materia.peso2" type="number" class="form-control pesos" required for="peso" name="peso" />
-        </div>
-        <div class="form-group col">
-            <label>Peso</label>
-            <input ng-model="materia.peso3" type="number" class="form-control pesos" required for="peso" name="peso" />
-        </div>
-
-
-
         <div class="form-group col" style="padding-top: 33px">
-            <span class="btn btn-primary" ng-click="addMateria(materia)"><i class="fas fa-plus" id="plus"></i></span>
+            <span class="btn btn-primary" ng-click="addMateria(modelSimulacao.materia)"><i class="fas fa-plus" id="plus"></i></span>
             <span class="btn btn-danger" ng-click="removeMateria()"><i class="fas fa-minus-square" id="minus"></i></span>
         </div>
     </div>
@@ -51,9 +49,6 @@
                     <tr>
                         <th>id</th>
                         <th>nome</th>
-                        <th>peso 1</th>
-                        <th>peso 2</th>
-                        <th>peso 3</th>
                     </tr>
                 </thead>
                 <tbody>

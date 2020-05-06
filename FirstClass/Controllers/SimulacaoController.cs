@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirstClass.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,86 +9,80 @@ namespace FirstClass.Controllers
 {
     public class SimulacaoController : Controller
     {
+        private AppDBContext db = new AppDBContext();
         // GET: Simulacao
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Simulacao/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Simulacao/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Simulacao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Route("{controller}/create")]
+        public JsonResult Create(ModelSimulacao collection)
         {
             try
             {
-                var numberOfClasses = collection.Get("numberOfClasses");
-                var numberOfStudents = collection.Get("numberOfStudents");
-                var matters = collection.Get("matter");
+                var result = CriarDadosSimulacao(collection);
 
-
-
-                return RedirectToAction("Index");
+                return Json(new { message = "Dados cadastrados com sucesso", success = true});
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                return Json(new { message = e.Message, success = false, stacktrace = e.StackTrace });
             }
         }
 
-        // GET: Simulacao/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Simulacao/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        private bool CriarDadosSimulacao(ModelSimulacao collection)
         {
             try
             {
-                // TODO: Add update logic here
+                var turmas = GerarTurmas(collection.NumeroTurmas);
+                db.Turmas.AddRange(turmas);
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                var alunos = new Aluno[collection.NumeroAlunos];
+
+                for (var i = 0; i < turmas.Length; i++)
+                {
+                    alunos = GerarAlunos(collection.NumeroAlunos, turmas[i].TurmaId);
+                    db.Alunos.AddRange(alunos);
+                }
+
+                db.SaveChanges();
+
+                return true;
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+
+                throw e;
             }
+ 
         }
 
-        // GET: Simulacao/Delete/5
-        public ActionResult Delete(int id)
+        private Turma[] GerarTurmas(int quantidadeTurmas)
         {
-            return View();
+            var turmas = new Turma[quantidadeTurmas];
+
+            for (int i = 0; i < quantidadeTurmas; i++)
+            {
+                turmas[i] = TurmaFactory.NovaTurma($"Turma { i + 1}", i + 1);
+            }
+
+            return turmas;
         }
 
-        // POST: Simulacao/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        private Aluno[] GerarAlunos(int quantidadealunos, int turmaId)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var alunos = new Aluno[quantidadealunos];
 
-                return RedirectToAction("Index");
-            }
-            catch
+            for (int i = 0; i < quantidadealunos; i++)
             {
-                return View();
+                alunos[i] = AlunoFactory.NovoAluno(AlunoFactory.nomes[i], turmaId);
             }
+
+            return alunos;
         }
     }
 }

@@ -17,5 +17,7 @@ namespace FirstClass.Models
         public DbSet<Turma> Turmas { get; set; }
 
         public DbSet<Prova> Provas { get; set; }
+
+        public DbSet<Materia> Materias { get; set; }
     }
 }

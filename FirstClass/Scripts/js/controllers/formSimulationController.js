@@ -1,9 +1,17 @@
-﻿angular.module('formSimulation').controller("formSimulationController", function ($scope, $http) {
+﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, $http, simulacaoAPI) {
     $scope.materias = [];
     $scope.incrementarIndice = 1;
 
     $scope.enviarModelSimulacao = (modelSimulacao) => {
-        
+        modelSimulacao.materias = $scope.materias;
+
+        console.log(modelSimulacao);
+
+        simulacaoAPI.postSimulacao(modelSimulacao).then(function sucessCallBack(data) {
+            console.log(data);
+        }, function errorCallBack(data) {
+            console.log(data);
+        });
     };
 
     $scope.addMateria = (materia) => {
@@ -14,30 +22,23 @@
     $scope.removeMateria = () => {
         if ($scope.materias.length > 0) {
             $scope.materias.pop();
-            $scope.incrementarIndice;
+            $scope.incrementarIndice--;
         }
 
         $('tbody tr:last-child').remove();
     };
 
     $scope.inserirNaTabela = (materia) => {
-        
+
         let tr = createElement('tr', null, null);
         let idAttribute = createAttribute('id', $scope.incrementarIndice);
         tr.attributes.setNamedItem(idAttribute);
 
         let td = createElement('td', null, $scope.incrementarIndice);
-        let tdNome = createElement('td', null, materia.nome);
-        let tdPeso1 = createElement('td', null, materia.peso1);
-        let tdPeso2 = createElement('td', null, materia.peso2);
-        let tdPeso3 = createElement('td', null, materia.peso3);
-
+        let tdNome = createElement('td', null, materia);
+        
         tr.appendChild(td);
         tr.appendChild(tdNome);
-
-        tr.appendChild(tdPeso1);
-        tr.appendChild(tdPeso2);
-        tr.appendChild(tdPeso3);
 
         $('tbody').append(tr);
 

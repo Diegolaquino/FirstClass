@@ -13,10 +13,12 @@ namespace FirstClass.Models
 
         public int MateriaId { get; set; }
 
+        [ForeignKey("MateriaId")]
         public virtual Materia Materia { get; set; }
 
         public int AlunoId { get; set; }
 
+        [ForeignKey("AlunoId")]
         public virtual Aluno Aluno { get; set; }
 
         public Prova(int materiaId, int alunoId)
@@ -24,14 +26,5 @@ namespace FirstClass.Models
             this.MateriaId = materiaId;
             this.AlunoId = alunoId;
         }
-
-        public static class ProvaFactory
-        {
-            public static Prova NovaProva(int materiaId, int alunoId)
-            {
-                return new Prova(materiaId, alunoId);
-            }
-        }
-
     }
 }

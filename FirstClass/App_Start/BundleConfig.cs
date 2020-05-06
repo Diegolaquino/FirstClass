@@ -28,7 +28,8 @@ namespace FirstClass
                       "~/Scripts/angular.js",
                       "~/Scripts/angular-messages.js",
                       "~/Scripts/js/app.js",
-                      "~/Scripts/js/controllers/formSimulationController.js"));
+                      "~/Scripts/js/controllers/formSimulationController.js",
+                      "~/Scripts/js/services/simulacaoAPIService.js"));
 
             #endregion
 

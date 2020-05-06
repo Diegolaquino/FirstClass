@@ -127,10 +127,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Aluno.cs" />
+    <Compile Include="Models\Factory\AlunoFactory.cs" />
     <Compile Include="Models\AppDBContext.cs" />
+    <Compile Include="Models\Factory\ProvaFactory.cs" />
     <Compile Include="Models\Materia.cs" />
+    <Compile Include="Models\Factory\MateriaFactory.cs" />
+    <Compile Include="Models\ModelSimulacao.cs" />
     <Compile Include="Models\Prova.cs" />
     <Compile Include="Models\Turma.cs" />
+    <Compile Include="Models\Factory\TurmaFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2638,6 +2643,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\app.js" />
     <Content Include="Scripts\js\controllers\formSimulationController.js" />
+    <Content Include="Scripts\js\services\simulacaoAPIService.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />

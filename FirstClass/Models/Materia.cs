@@ -13,20 +13,13 @@ namespace FirstClass.Models
 
         public int TurmaId { get; set; }
 
+        [ForeignKey("TurmaId")]
         public virtual Turma Turma { get; set; }
 
         public Materia(string nome, int turmaId)
         {
             this.Nome = nome;
             this.TurmaId = turmaId;
-        }
-
-        public static class MateriaFactory
-        {
-            public static Materia NovaMateria(string nome, int turmaId)
-            {
-                return new Materia(nome, turmaId);
-            }
         }
     }
 }
