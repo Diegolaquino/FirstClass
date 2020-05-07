@@ -12,7 +12,7 @@ namespace FirstClass.Models
             return new Prova(materiaId, alunoId);
         }
 
-        public static List<ProvaModel> ToProvaModel(List<Prova> provas)
+        public static List<ProvaModel> ToProvaModel(IList<Prova> provas)
         {
             var provasModel = new List<ProvaModel>() { };
 
@@ -21,7 +21,7 @@ namespace FirstClass.Models
                 provasModel.Add(new ProvaModel(item.ProvaId, item.Nota, item.Materia.Nome));
             }
 
-            return provasModel;
+            return provasModel.OrderBy(p => p.Materia).ToList();
         }
     }
 

@@ -23,7 +23,7 @@ namespace FirstClass.Controllers
             try
             {
                 var provas = db.Provas.Where(p => p.AlunoId == idAluno).ToList();
-                var provasModel = ProvaFactory.ToProvaModel(provas).OrderBy(p => p.Materia);
+                var provasModel = ProvaFactory.ToProvaModel(provas);
 
                 return Json(new { provasModel, sucess = true }, JsonRequestBehavior.AllowGet);
             }

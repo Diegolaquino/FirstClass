@@ -1,6 +1,6 @@
 ﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, simulacaoAPI, $window, alunoAPI) {
     $scope.materias = [];
-    $scope.provas = [];
+    $scope.provas = {};
     $scope.incrementarIndice = 1;
 
     $scope.enviarModelSimulacao = (modelSimulacao) => {
@@ -17,6 +17,10 @@
     };
 
     $scope.addMateria = (nome, peso1, peso2, peso3) => {
+        if (nome.trim() === "" || peso1.trim() === "" || peso2.trim() === "" || peso3.trim() === "") {
+            return;
+        }
+
         let materia = materiaFactory(nome, peso1, peso2, peso3);
         $scope.materias.push(materia);
         $scope.inserirNaTabela(materia);
@@ -65,7 +69,11 @@
 
     $scope.pegarProvas = (idAluno) => {
         alunoAPI.getProvas(idAluno).then(function sucessCallBack(response) {
-            console.log(response);
+           
+            $scope.provas = mapeandoProvasENotas(response.data.provasModel);
+
+            console.log($scope.provas);
+
         }, function errorCallBack(data) {
             console.log(data);
         });
@@ -84,6 +92,37 @@
         materia.peso3 = peso3;
 
         return materia;
+    };
+
+    var bimestreFactory = (materia) => {
+        let bimestre = {};
+
+        bimestre.materia = materia;
+        bimestre.notas = [];
+
+        return bimestre;
+    };
+
+    var mapeandoProvasENotas = (arrayProvas) => {
+        var elements = arrayProvas.map((el) => { return el.Materia; });
+
+        let setMaterias = new Set(elements);
+
+        let arrayMaterias = Array.from(setMaterias);
+
+        let bimestres = [];
+
+        for (let i = 0; i < arrayMaterias.length; i++) {
+            
+            bimestres.push(bimestreFactory(arrayMaterias[i]));
+        }
+
+        for (let i = 0; i < bimestres.length; i++) {
+            let values = arrayProvas.filter(x => x.Materia === bimestres[i].materia);
+            bimestres[i].notas = values;
+        }
+
+        return bimestres;
     };
 
     var createElement = (name, classList, text = null) => {

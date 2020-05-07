@@ -55,27 +55,27 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" ng-repeat="prova in provas">
                     <table class="table table-striped">
                         <thead class="text-center">
                             <tr>
                                 <th>
-                                    Matéria
+                                    {{ prova.materia }}
                                 </th>
                             </tr>
                             <tr>
-                                <th>Primeira Prova</th>
-                                <th>Segunda Prova</th>
-                                <th>Terceira Prova</th>
-                                <th>Prova Final</th>
+                                <th>1º Prova</th>
+                                <th>2º Prova</th>
+                                <th>3º Prova</th>
+                                <th>Final</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>5</td>
-                                <td>10</td>
-                                <td>7</td>
-                                <td>6</td>
+                                <td>{{ prova.notas[0].Nota }}</td>
+                                <td>{{ prova.notas[1].Nota }}</td>
+                                <td>{{ prova.notas[2].Nota }}</td>
+                                <td>0</td>
                             </tr>
                         </tbody>
                     </table>
