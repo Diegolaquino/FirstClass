@@ -21,5 +21,7 @@ namespace FirstClass.Models
         {
             this.Nome = nome;
         }
+
+        public Materia(){}
     }
 }

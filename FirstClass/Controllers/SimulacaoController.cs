@@ -49,8 +49,7 @@ namespace FirstClass.Controllers
                     db.Alunos.AddRange(alunos);
                 }
 
-                var materias = GerarMaterias(collection.Materias);
-                db.Materias.AddRange(materias);
+                db.Materias.AddRange(collection.Materias);
 
                 db.SaveChanges();
 
@@ -62,18 +61,6 @@ namespace FirstClass.Controllers
                 throw e;
             }
  
-        }
-
-        private Materia[] GerarMaterias(string[] arrayMaterias)
-        {
-            var materias = new Materia[arrayMaterias.Length];
-
-            for (var i = 0; i < arrayMaterias.Length; i++)
-            {
-                materias[i] = MateriaFactory.NovaMateria(arrayMaterias[i]);
-            }
-
-            return materias;
         }
 
         private Turma[] GerarTurmas(int quantidadeTurmas)

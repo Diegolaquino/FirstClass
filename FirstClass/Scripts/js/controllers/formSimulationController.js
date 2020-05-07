@@ -1,4 +1,4 @@
-﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, $http, simulacaoAPI) {
+﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, simulacaoAPI) {
     $scope.materias = [];
     $scope.incrementarIndice = 1;
 
@@ -14,7 +14,8 @@
         });
     };
 
-    $scope.addMateria = (materia) => {
+    $scope.addMateria = (nome, peso1, peso2, peso3) => {
+        let materia = materiaFactory(nome, peso1, peso2, peso3);
         $scope.materias.push(materia);
         $scope.inserirNaTabela(materia);
     };
@@ -35,14 +36,36 @@
         tr.attributes.setNamedItem(idAttribute);
 
         let td = createElement('td', null, $scope.incrementarIndice);
-        let tdNome = createElement('td', null, materia);
+        let tdNome = createElement('td', null, materia.nome);
+        let tdPeso1 = createElement('td', null, materia.peso1);
+        let tdPeso2 = createElement('td', null, materia.peso2);
+        let tdPeso3 = createElement('td', null, materia.peso3);
+
         
         tr.appendChild(td);
         tr.appendChild(tdNome);
+        tr.appendChild(tdPeso1);
+        tr.appendChild(tdPeso2);
+        tr.appendChild(tdPeso3);
 
         $('tbody').append(tr);
 
         $scope.incrementarIndice++;
+    };
+
+    $scope.canSend = () => {
+        return $scope.materias.length > 0;
+    };
+
+    var materiaFactory = (nome, peso1, peso2, peso3) => {
+        let materia = {};
+
+        materia.nome = nome;
+        materia.peso1 = peso1;
+        materia.peso2 = peso2;
+        materia.peso3 = peso3;
+
+        return materia;
     };
 
     var createElement = (name, classList, text = null) => {
