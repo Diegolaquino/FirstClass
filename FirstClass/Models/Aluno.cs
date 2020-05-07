@@ -13,6 +13,8 @@ namespace FirstClass.Models
 
         public int TurmaId { get; set; }
 
+        public ESituacaoAluno Situacao { get; set; }
+
         [ForeignKey("TurmaId")]
         public virtual Turma Turma { get; set; }
 
@@ -20,6 +22,7 @@ namespace FirstClass.Models
         {
             this.Nome = nome;
             this.TurmaId = turmaId;
+            this.Situacao = ESituacaoAluno.Pendente;
         }
 
         public Aluno() { }

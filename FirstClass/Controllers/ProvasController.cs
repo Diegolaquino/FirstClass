@@ -59,22 +59,57 @@ namespace FirstClass.Controllers
         {
             try
             {
+                
                 var materias = db.Materias.ToList();
                 var alunos = db.Alunos.ToList();
 
                 var provas = new List<Prova>();
 
+                // laço cria as provas e atualiza a situação do aluno de acordo com as notas
                 for (int i = 0; i < alunos.Count; i++)
                 {
                     for (int j = 0; j < materias.Count; j++)
                     {
                         for (int k = 0; k < 3; k++)
                         {
-                            provas.Add(ProvaFactory.NovaProva(materias[j].MateriaId, alunos[i].AlunoId));
+                            var prova = ProvaFactory.NovaProva(materias[j].MateriaId, alunos[i].AlunoId, (k + 1));
+                            provas.Add(prova);
+
                         }
+
+                        var provasAlunoAtual = provas.Where(x => x.MateriaId == materias[j].MateriaId && x.AlunoId == alunos[i].AlunoId);
+
+
+                        var media = CalcularFinal(provasAlunoAtual, materias[j]);
+
+                        if(media >= 6)
+                        {
+                            alunos[i].Situacao = ESituacaoAluno.Aprovado;
+                        }
+                        else if(media <= 4)
+                        {
+                            alunos[i].Situacao = ESituacaoAluno.Reprovado;
+                        }
+                        else
+                        {
+                            alunos[i].Situacao = ESituacaoAluno.Final;
+                            var final = ProvaFactory.ProvaFinal(materias[j].MateriaId, alunos[i].AlunoId, 4, media);
+
+                            provas.Add(final);
+                        }
+
                         
                     }
                 }
+
+                foreach(var aluno in alunos)
+                {
+                    db.Entry(aluno).State = System.Data.Entity.EntityState.Modified;
+                }
+
+
+                db.SaveChanges();
+               
 
                 return provas;
             }
@@ -82,6 +117,17 @@ namespace FirstClass.Controllers
             {
                 throw;
             }
+        }
+
+        private decimal? CalcularFinal(IEnumerable<Prova> provas, Materia materia)
+        {
+            var prova1 = provas.First(x => x.ETipoProva == Models.Enum.ETipoProva.Primeira);
+            var prova2 = provas.First(x => x.ETipoProva == Models.Enum.ETipoProva.Segunda);
+            var prova3 = provas.First(x => x.ETipoProva == Models.Enum.ETipoProva.Terceira);
+
+            var media = (((prova1.Nota * materia.Peso1) + (prova2.Nota * materia.Peso2) + (prova3.Nota * materia.Peso3)) / (materia.Peso1 + materia.Peso2 + materia.Peso3));
+
+            return media;
         }
     }
 }

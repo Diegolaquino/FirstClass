@@ -7,9 +7,14 @@ namespace FirstClass.Models
 {
     public static class ProvaFactory
     {
-        public static Prova NovaProva(int materiaId, int alunoId)
+        public static Prova NovaProva(int materiaId, int alunoId, int tipoProva)
         {
-            return new Prova(materiaId, alunoId);
+            return new Prova(materiaId, alunoId, tipoProva);
+        }
+
+        public static Prova ProvaFinal(int materiaId, int alunoId, int tipoProva, decimal? nota)
+        {
+            return new Prova(materiaId, alunoId, tipoProva, nota);
         }
 
         public static List<ProvaModel> ToProvaModel(IList<Prova> provas)

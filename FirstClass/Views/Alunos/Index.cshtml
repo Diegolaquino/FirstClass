@@ -35,7 +35,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
-                    <td>Aprovado</td>
+                    <td>@Html.DisplayFor(modelItem => item.Situacao)</td>
                     <td>
                         <span ng-click="pegarProvas(@item.AlunoId)" data-toggle="modal" data-target="#notas" style="cursor: pointer;">
                             <i class="fas fa-user-graduate"></i>
@@ -75,7 +75,7 @@
                                 <td>{{ prova.notas[0].Nota }}</td>
                                 <td>{{ prova.notas[1].Nota }}</td>
                                 <td>{{ prova.notas[2].Nota }}</td>
-                                <td>0</td>
+                                <td>{{ prova.notas[3].Nota }}</td>
                             </tr>
                         </tbody>
                     </table>

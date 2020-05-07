@@ -17,9 +17,6 @@
     };
 
     $scope.addMateria = (nome, peso1, peso2, peso3) => {
-        if (nome.trim() === "" || peso1.trim() === "" || peso2.trim() === "" || peso3.trim() === "") {
-            return;
-        }
 
         let materia = materiaFactory(nome, peso1, peso2, peso3);
         $scope.materias.push(materia);
