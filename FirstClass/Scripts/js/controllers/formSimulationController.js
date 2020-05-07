@@ -1,4 +1,4 @@
-﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, simulacaoAPI) {
+﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, simulacaoAPI, $window) {
     $scope.materias = [];
     $scope.incrementarIndice = 1;
 
@@ -9,6 +9,7 @@
 
         simulacaoAPI.postSimulacao(modelSimulacao).then(function sucessCallBack(data) {
             console.log(data);
+            $window.location.href = "/home/index";
         }, function errorCallBack(data) {
             console.log(data);
         });

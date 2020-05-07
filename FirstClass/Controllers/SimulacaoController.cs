@@ -55,10 +55,9 @@ namespace FirstClass.Controllers
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-
-                throw e;
+                throw;
             }
  
         }
@@ -85,6 +84,16 @@ namespace FirstClass.Controllers
             }
 
             return alunos;
+        }
+
+        public ActionResult DeletarTudo()
+        {
+            db.Database.ExecuteSqlCommand("DELETE FROM [Materias]");
+            db.Database.ExecuteSqlCommand("DELETE FROM [Provas]");
+            db.Database.ExecuteSqlCommand("DELETE FROM [Finalistas]");
+            db.Database.ExecuteSqlCommand("DELETE FROM [Alunos]");
+
+            return RedirectToAction("Index");
         }
     }
 }
