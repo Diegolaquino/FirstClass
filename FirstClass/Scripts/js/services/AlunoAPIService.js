@@ -4,7 +4,12 @@
         return $http.get(`/Provas/GetProvas?idAluno=${idAluno}`);
     };
 
+    var _gerarProvas = function () {
+        return $http.get("/Provas/GerarProvas");
+    };
+
     return {
-        getProvas: _getProvas
+        getProvas: _getProvas,
+        gerarProvas: _gerarProvas
     };
 });

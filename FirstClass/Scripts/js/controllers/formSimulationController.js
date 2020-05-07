@@ -1,5 +1,6 @@
 ﻿angular.module("formSimulation").controller("formSimulationController", function ($scope, simulacaoAPI, $window, alunoAPI) {
     $scope.materias = [];
+    $scope.provas = [];
     $scope.incrementarIndice = 1;
 
     $scope.enviarModelSimulacao = (modelSimulacao) => {
@@ -54,9 +55,17 @@
         $scope.incrementarIndice++;
     };
 
+    $scope.gerarProvas = () => {
+        alunoAPI.gerarProvas().then(function sucessCallBack(response) {
+            console.log(response);
+        }, function errorCallBack(response) {
+            console.log(response);
+        });
+    };
+
     $scope.pegarProvas = (idAluno) => {
-        alunoAPI.getProvas(idAluno).then(function sucessCallBack(data) {
-            console.log(data);
+        alunoAPI.getProvas(idAluno).then(function sucessCallBack(response) {
+            console.log(response);
         }, function errorCallBack(data) {
             console.log(data);
         });

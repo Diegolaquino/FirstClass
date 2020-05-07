@@ -22,8 +22,10 @@ namespace FirstClass.Controllers
         {
             try
             {
-                var provas = db.Provas.Where(p => p.AlunoId == idAluno).GroupBy(p => p.MateriaId).ToList();
-                return Json(new { mensagem = "caralho", data = provas, sucess = true }, JsonRequestBehavior.AllowGet);
+                var provas = db.Provas.Where(p => p.AlunoId == idAluno).ToList();
+                var provasModel = ProvaFactory.ToProvaModel(provas).OrderBy(p => p.Materia);
+
+                return Json(new { provasModel, sucess = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
@@ -42,6 +44,8 @@ namespace FirstClass.Controllers
                 var provas = CriarCenario();
 
                 db.Provas.AddRange(provas);
+
+                db.SaveChanges();
 
                 return Json(new { message = "provas geradas", success = true }, JsonRequestBehavior.AllowGet);
             }
@@ -64,7 +68,11 @@ namespace FirstClass.Controllers
                 {
                     for (int j = 0; j < materias.Count; j++)
                     {
-                        provas.Add(ProvaFactory.NovaProva(materias[j].MateriaId, alunos[i].AlunoId));
+                        for (int k = 0; k < 3; k++)
+                        {
+                            provas.Add(ProvaFactory.NovaProva(materias[j].MateriaId, alunos[i].AlunoId));
+                        }
+                        
                     }
                 }
 

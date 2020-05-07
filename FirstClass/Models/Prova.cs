@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FirstClass.Models
@@ -23,8 +24,10 @@ namespace FirstClass.Models
 
         public Prova(int materiaId, int alunoId)
         {
+            Random randNum = new Random();
             this.MateriaId = materiaId;
             this.AlunoId = alunoId;
+            this.Nota = new decimal(randNum.NextDouble() * 10);
         }
 
         public Prova() { }

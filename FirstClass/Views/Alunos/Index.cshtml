@@ -4,13 +4,13 @@
     ViewBag.Title = "Boletim";
 }
 
-<div class="row" style="margin: 10px;">
-    <h2 class="col-8">Boletim dos Alunos</h2>
-    <button class="btn btn-info col-4">Simular provas e notas</button>
-</div>
-
-
 <div ng-controller="formSimulationController" ng-init="init()">
+
+    <div class="row" style="margin: 10px;">
+        <h2 class="col-8">Boletim dos Alunos</h2>
+        <button class="btn btn-info col-4" ng-click="gerarProvas()">Simular provas e notas</button>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -71,10 +71,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>5</td>
-                            <td>10</td>
-                            <td>7</td>
-                            <td>6</td>
+                            <tr>
+                                <td>5</td>
+                                <td>10</td>
+                                <td>7</td>
+                                <td>6</td>
                             </tr>
                         </tbody>
                     </table>
