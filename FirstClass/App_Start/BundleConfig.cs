@@ -29,7 +29,8 @@ namespace FirstClass
                       "~/Scripts/angular-messages.js",
                       "~/Scripts/js/app.js",
                       "~/Scripts/js/controllers/formSimulationController.js",
-                      "~/Scripts/js/services/simulacaoAPIService.js"));
+                      "~/Scripts/js/services/simulacaoAPIService.js",
+                      "~/Scripts/js/services/alunoAPIService.js"));
 
             #endregion
 

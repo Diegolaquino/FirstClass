@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlunosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProvasController.cs" />
     <Compile Include="Controllers\SimulacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2648,6 +2649,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\app.js" />
     <Content Include="Scripts\js\controllers\formSimulationController.js" />
+    <Content Include="Scripts\js\services\alunoAPIService.js" />
     <Content Include="Scripts\js\services\simulacaoAPIService.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -2756,7 +2758,9 @@
     <Content Include="Views\Simulacao\Index.cshtml" />
     <Content Include="Views\Alunos\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Provas\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>

@@ -9,7 +9,6 @@ namespace FirstClass.Controllers
 {
     public class AlunosController : Controller
     {
-
         private AppDBContext db = new AppDBContext();
 
         // GET: Alunos
@@ -19,4 +18,5 @@ namespace FirstClass.Controllers
             return View(alunos);
         }
     }
+
 }
