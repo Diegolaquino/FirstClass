@@ -26,5 +26,7 @@ namespace FirstClass.Models
             this.MateriaId = materiaId;
             this.AlunoId = alunoId;
         }
+
+        public Prova() { }
     }
 }

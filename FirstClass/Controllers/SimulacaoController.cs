@@ -90,8 +90,9 @@ namespace FirstClass.Controllers
         {
             db.Database.ExecuteSqlCommand("DELETE FROM [Materias]");
             db.Database.ExecuteSqlCommand("DELETE FROM [Provas]");
-            db.Database.ExecuteSqlCommand("DELETE FROM [Finalistas]");
+            
             db.Database.ExecuteSqlCommand("DELETE FROM [Alunos]");
+            db.Database.ExecuteSqlCommand("DELETE FROM [Turmas]");
 
             return RedirectToAction("Index");
         }

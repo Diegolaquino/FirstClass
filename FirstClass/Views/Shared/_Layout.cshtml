@@ -20,15 +20,10 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "sr-only" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            @Html.ActionLink("Boletim", "Index", "Alunos", null, new { @class = "nav-link" })
                         </li>
                     </ul>
                 </div>

@@ -19,5 +19,7 @@ namespace FirstClass.Models
             this.Nome = nome;
             this.TurmaId = id;
         }
+
+        public Turma() { }
     }
 }

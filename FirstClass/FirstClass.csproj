@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlunosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SimulacaoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2753,6 +2754,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Simulacao\Index.cshtml" />
+    <Content Include="Views\Alunos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
