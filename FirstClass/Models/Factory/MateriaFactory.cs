@@ -7,9 +7,9 @@ namespace FirstClass.Models
 {
     public static class MateriaFactory
     {
-        public static Materia NovaMateria(string nome, int turmaId)
+        public static Materia NovaMateria(string nome)
         {
-            return new Materia(nome, turmaId);
+            return new Materia(nome);
         }
     }
 }

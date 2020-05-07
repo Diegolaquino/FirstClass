@@ -11,15 +11,15 @@ namespace FirstClass.Models
 
         public string Nome { get; set; }
 
-        public int TurmaId { get; set; }
+        public decimal Peso1 { get; set; }
 
-        [ForeignKey("TurmaId")]
-        public virtual Turma Turma { get; set; }
+        public decimal Peso2 { get; set; }
 
-        public Materia(string nome, int turmaId)
+        public decimal Peso3 { get; set; }
+
+        public Materia(string nome)
         {
             this.Nome = nome;
-            this.TurmaId = turmaId;
         }
     }
 }

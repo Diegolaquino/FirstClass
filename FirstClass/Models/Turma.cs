@@ -12,7 +12,7 @@ namespace FirstClass.Models
 
         public string Nome { get; set; }
 
-        public IList<Aluno> Alunos { get; set; }
+        public virtual IList<Aluno> Alunos { get; set; }
 
         public Turma(string nome, int id)
         {
